@@ -2,6 +2,7 @@
 #이름 김보성
 #내용 연습용
 
+#1장
 #테이블 만들기
 create table `User1`(
 	`uid` varchar(10),
@@ -69,6 +70,45 @@ insert into `TblProduct` values (4,'세탁기',1000,8,'LG','2022-01-06');
 insert into `TblProduct` (`prdCode`,`prdName`,`prdPrice`,`prdAmount`) values (5,'컴퓨터',1100,0);
 insert into `TblProduct` values (6,'휴대폰',900,102,'삼성','2022-01-06');
 
+select * from `Tbluser`;
+select `userName` from `Tbluser`;
+select `userName`, `userHp` from `Tbluser`;
+select * from `Tbluser` where `userid` = 'p102';
+select * from `Tbluser` where `userid` = 'p104' or `userid` = 'p105';
+select * from `Tbluser` where `userAge` > 30;
+select * from `Tbluser` where `userHp` is null;
+select * from `Tbluser` where `userAddr` = '신라';
+update	`TblUser` set `userAge`=42 where `userid` = 'p104';
+update	`TblUser` set `userAddr`='경남 김해시' where `userid` = 'p105';
+delete from `TblUser` where `userid` = 'p103';
 
+select * from `TblProduct`;
+select `prdName` from `TblProduct`;
+select `prdName`, `prdPrice` from `TblProduct`;
+select * from `TblProduct` where `prdCompany` = 'LG';
+select * from `TblProduct` where `prdCompany` = '삼성';
+update `Tblproduct` set `prdCompany`='삼성',
+						`prdMakeDate`='2021-01-01'
+                        where `prdCode`=5;
 
+#2022/08/25                        
+#2장
+create table `User2`(`uid` varchar(10) primary key, 
+					 `name`varchar(10), 
+                     `hp` char(13),
+                     `age` int
+);
+
+insert into `User2` values ('a103', '김유신', '010-1234-1003', 25);
+insert into `User2` values ('a102', '김춘추', '010-1234-1002', 23);
+
+create table `User3` (
+	`uid`	varchar(20) primary key,
+    `name`	varchar(10),
+    `hp`	char(13) unique,
+    `age`	tinyint
+);
+
+insert into `User3` values ('a103', '김유신', '010-1234-1003', 25);
+insert into `User3` values ('a102', '김춘추', '010-1234-1002', 23);
 
