@@ -9,14 +9,14 @@ GRANT ALL PRIVILEGES ON `java1_board`.* TO 'java1_board'@'%';
 FLUSH PRIVILEGES;
 
 #회원 테이블 생성
-CREATE TABLE `board_user` (
+java1_boardCREATE TABLE `board_user` (
 	`uid`   VARCHAR(20) PRIMARY KEY,
 	`pass`  VARCHAR(255),
 	`name`  VARCHAR(20),
 	`nick`  VARCHAR(20) UNIQUE,
-	`email` VARCHAR(20) UNIQUE,
+	`email` VARCHAR(100) UNIQUE,
 	`hp`    CHAR(13) UNIQUE,
-	`grade` TINYINT,
+	`grade` TINYINT DEFAULT 2,
 	`zip`   CHAR(5),
 	`addr1` VARCHAR(255),
 	`addr2` VARCHAR(255),
@@ -55,3 +55,13 @@ CREATE TABLE `board_file` (
 	`rdate` 		DATETIME
 );
 
+
+SELECT a.*, b.`nick` FROM `board_article` AS a
+JOIN `board_user` AS b ON a.uid = b.uid
+ORDER BY `no` DESC
+LIMIT 10, 10;
+
+SELECT COUNT(`no`) FROM `board_article`;
+
+INSERT INTO `board_article` (`title`, `content`, `uid`, `regip`, `rdate`)
+SELECT `title`, `content`, `uid`, `regip`, `rdate` FROM `board_article`;
